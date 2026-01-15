@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonic Wikipedia | Real-time Data Installation</title>
+    
+    <!-- Three.js Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- WICHTIG: Post-Processing Bibliotheken für den Glow-Effekt -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    
+    <!-- Eigenes Styling -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Start Overlay -->
+    <div id="overlay">
+        <h1 class="main-title">Sonic Wikipedia</h1>
+        <p class="subtitle">Installation by Malte Mittrowann</p>
+        <p class="description">
+            Experience the global pulse of human knowledge in real-time.<br>
+            Every edit to Wikipedia is translated into light and sound.
+        </p>
+        <button class="start-btn" id="start-btn">Enter Experience</button>
+    </div>
+
+    <!-- UI Overlay -->
+    <div id="interface">
+        <h1>Live Stream</h1>
+        <div class="stats">
+            <div class="stat-row"><span>Status:</span> <span id="status" style="color: #ff3e3e;">Offline</span></div>
+            <div class="stat-row"><span>Edits:</span> <span id="count">0</span></div>
+            <div class="stat-row"><span>Source:</span> <span id="last-wiki">-</span></div>
+            <div class="desktop-only">
+                <div class="separator"></div>
+                <div class="stat-row"><span>Author:</span> <span id="meta-user" class="highlight">-</span></div>
+                <div class="stat-row"><span>Article:</span> <span id="meta-title" class="truncate">-</span></div>
+                <div class="stat-row"><span>Type:</span> <span id="meta-type">-</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mixing Desk -->
+    <div id="mixing-desk">
+        <div class="control-group">
+            <label>Balance (Human / Bot)</label>
+            <input type="range" id="slider-balance" min="-1" max="1" step="0.01" value="0">
+            <div class="labels"><span>Human</span><span>Mix</span><span>Bot</span></div>
+        </div>
+        <div class="control-group">
+            <label>Harmony (Free / Scale)</label>
+            <input type="range" id="slider-harmony" min="0" max="1" step="0.01" value="0.5">
+            <div class="labels"><span>Free</span><span>Pentatonic</span></div>
+        </div>
+        <div class="control-group">
+            <label>Timbre (Dark / Bright)</label>
+            <input type="range" id="slider-timbre" min="0" max="1" step="0.01" value="0.5">
+            <div class="labels"><span>Dark</span><span>Bright</span></div>
+        </div>
+        <div class="control-group">
+            <label>Space (Reverb)</label>
+            <input type="range" id="slider-reverb" min="0" max="0.9" step="0.01" value="0.4">
+            <div class="labels"><span>Dry</span><span>Wet</span></div>
+        </div>
+    </div>
+
+    <div id="log">Waiting for interaction...</div>
+    <div id="tooltip"></div>
+
+    <!-- Audio Controls (Rechts unten) -->
+    <div id="audio-controls">
+        <button id="stereo-btn" title="Toggle Stereo/Mono" class="icon-btn">🎧</button>
+        <button id="mute-btn" title="Toggle Sound" class="icon-btn">🔊</button>
+    </div>
+
+    <div id="canvas-container"></div>
+
+    <script src="sonifier.js"></script>
+    <script src="visualizer.js"></script>
+    <script src="stream.js"></script>
+</body>
+</html>

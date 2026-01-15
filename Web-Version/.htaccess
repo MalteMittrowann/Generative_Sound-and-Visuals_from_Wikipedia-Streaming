@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Aktuell deaktiviert, bis das SSL-Zertifikat bei Strato aktiv ist.
+# Sobald SSL läuft, entferne die Rauten (#) vor den nächsten zwei Zeilen:
+
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
