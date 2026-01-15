@@ -8,7 +8,7 @@
     <!-- Three.js Core -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
-    <!-- WICHTIG: Post-Processing Bibliotheken für den Glow-Effekt -->
+    <!-- Post-Processing -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
@@ -16,7 +16,6 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
     
-    <!-- Eigenes Styling -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,7 +28,22 @@
             Experience the global pulse of human knowledge in real-time.<br>
             Every edit to Wikipedia is translated into light and sound.
         </p>
-        <button class="start-btn" id="start-btn">Enter Experience</button>
+        
+        <div class="button-group">
+            <button class="start-btn tutorial-mode" id="start-tutorial-btn">Enter with Tutorial</button>
+            <button class="start-btn" id="start-btn">Enter Experience</button>
+        </div>
+    </div>
+
+    <!-- Tutorial Box (Dynamisch positioniert) -->
+    <div id="tutorial-box">
+        <h3 id="tut-title">Title</h3>
+        <p id="tut-text">Description goes here.</p>
+        <div class="tut-controls">
+            <span id="tut-progress">1/6</span>
+            <button id="tut-next">Next ›</button>
+        </div>
+        <div class="tut-arrow"></div>
     </div>
 
     <!-- UI Overlay -->
@@ -50,22 +64,22 @@
 
     <!-- Mixing Desk -->
     <div id="mixing-desk">
-        <div class="control-group">
+        <div class="control-group" id="grp-balance">
             <label>Balance (Human / Bot)</label>
             <input type="range" id="slider-balance" min="-1" max="1" step="0.01" value="0">
             <div class="labels"><span>Human</span><span>Mix</span><span>Bot</span></div>
         </div>
-        <div class="control-group">
+        <div class="control-group" id="grp-harmony">
             <label>Harmony (Free / Scale)</label>
             <input type="range" id="slider-harmony" min="0" max="1" step="0.01" value="0.5">
             <div class="labels"><span>Free</span><span>Pentatonic</span></div>
         </div>
-        <div class="control-group">
+        <div class="control-group" id="grp-timbre">
             <label>Timbre (Dark / Bright)</label>
             <input type="range" id="slider-timbre" min="0" max="1" step="0.01" value="0.5">
             <div class="labels"><span>Dark</span><span>Bright</span></div>
         </div>
-        <div class="control-group">
+        <div class="control-group" id="grp-reverb">
             <label>Space (Reverb)</label>
             <input type="range" id="slider-reverb" min="0" max="0.9" step="0.01" value="0.4">
             <div class="labels"><span>Dry</span><span>Wet</span></div>
@@ -75,7 +89,6 @@
     <div id="log">Waiting for interaction...</div>
     <div id="tooltip"></div>
 
-    <!-- Audio Controls (Rechts unten) -->
     <div id="audio-controls">
         <button id="stereo-btn" title="Toggle Stereo/Mono" class="icon-btn">🎧</button>
         <button id="mute-btn" title="Toggle Sound" class="icon-btn">🔊</button>
