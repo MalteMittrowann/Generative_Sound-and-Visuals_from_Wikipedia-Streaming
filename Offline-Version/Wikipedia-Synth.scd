@@ -7,7 +7,7 @@ ServerOptions.devices;
 (
 o = Server.default.options;
 o.inDevice  = nil;     // kein Input
-o.outDevice = "Windows WASAPI : Lautsprecher (Jabra Evolve2 30 SE)";
+o.outDevice = "Windows WASAPI : Lautsprecher (Realtek(R) Audio)";
 o.numOutputBusChannels = 2;
 o.numInputBusChannels = 0;
 )
