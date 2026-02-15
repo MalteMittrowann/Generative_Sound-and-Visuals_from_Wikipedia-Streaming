@@ -1,0 +1,161 @@
+================================================================================
+PROJEKT: SONIC WIKIPEDIA
+Generative Audiovisuelle Echtzeit-Installation
+
+AUTOR: Malte Mittrowann
+KURS: Generative Sound & Visual Art
+REPOSITORY: https://github.com/MalteMittrowann/Generative_Sound-and-Visuals_from_Wikipedia-Streaming
+LIVE-INSTALLATION: https://maltemittrowann.com/wiki-sonic/
+
+================================================================================
+
+PROJEKTÜBERSICHT
+================================================================================
+
+"Sonic Wikipedia" ist eine cross-mediale generative Kunstinstallation, die den
+globalen Puls des menschlichen Wissens in ein audiovisuelles Erlebnis
+transformiert. Das System verbindet sich in Echtzeit mit dem globalen Datenstrom
+der Wikimedia Foundation und übersetzt jede Bearbeitung (Edit), die auf
+Wikipedia getätigt wird, in Licht und Klang.
+
+Wikipedia wird oft als statische Enzyklopädie wahrgenommen. Im Hintergrund
+jedoch agiert ein komplexes, lebendiges Ökosystem aus menschlichen Autoren und
+automatisierten Bots. Dieses Projekt macht diese unsichtbare digitale
+Infrastruktur sinnlich erfahrbar.
+
+================================================================================
+2. KONZEPT & FORSCHUNGSFRAGE
+
+Das Projekt behandelt die Wikipedia-API nicht als reine Datenquelle, sondern als
+generativen "Keim" (Seed). Ein zentraler Forschungsaspekt liegt in der
+ästhetischen Unterscheidung zwischen menschlicher und maschineller Aktivität:
+
+Cross-Mediale Übersetzung: Wie lassen sich abstrakte Metadaten (Byte-Größe,
+Nutzer-Typ, Artikellänge, Sprache) in sensorische Parameter (Frequenz,
+Klangfarbe, Position im 3D-Raum) übersetzen?
+
+Mensch vs. Maschine: Das System weist den Akteuren unterschiedliche
+Signaturen zu. Algorithmische Bot-Edits klingen kalt, präzise und digital
+(Rechteckwellen), während menschliche Beiträge warm, organisch und fließend
+(Sägezahnwellen mit Filterfahrten) dargestellt werden.
+
+Globalität: Durch die Verortung der Edits (sowohl im Stereobild als auch
+auf einem virtuellen Globus) wird die weltweite Gleichzeitigkeit der
+Wissensproduktion visualisiert.
+
+================================================================================
+3. SYSTEMARCHITEKTUR (DUAL IMPLEMENTATION)
+
+Das Projekt wurde in zwei technischen Iterationen entwickelt, um unterschiedliche
+Ökosysteme zu erforschen:
+
+A) DER FORSCHUNGS-PROTOTYP (OFFLINE / LOKAL)
+
+Diese Version nutzt spezialisierte Umgebungen für maximale Performance und
+Netzwerk-Kommunikation.
+
+Backend: Python 3.13 (Daten-Stream & Parsing).
+
+Kommunikation: OSC (Open Sound Control) via UDP.
+
+Audio-Engine: SuperCollider (Hochleistungs-Echtzeitsynthese).
+
+Visuals: Python (Pygame mit Custom 3D-Projektions-Engine).
+
+B) DIE ÖFFENTLICHE INSTALLATION (ONLINE / WEB)
+
+Eine Portierung auf moderne Web-Standards, um das Projekt barrierefrei zugänglich
+zu machen.
+
+Core: JavaScript (ES6+), Server-Sent Events (SSE).
+
+Visuals: Three.js (WebGL) für hardwarebeschleunigtes 3D-Rendering & Bloom.
+
+Audio: Web Audio API (Nachbau der SuperCollider-Synthese im Browser).
+
+================================================================================
+4. FEATURES & MAPPINGS
+
+VISUELLE PARAMETER
+
+X-Achse: Repräsentiert die Sprache/das Wiki (z.B. Englisch links, Deutsch
+rechts, Japanisch Mitte).
+
+Y-Achse: Repräsentiert die Größe der Änderung (Delta). Kleine Typos schweben
+oben, massive Textänderungen fallen nach unten.
+
+Farbe:
+
+Blau: Bot-Aktivität (Automatisierte Wartung).
+
+Gelb/Orange: Menschliche Ergänzung.
+
+Rot: Menschliche Löschung (Vandalismus oder Bereinigung).
+
+Modi: Umschaltbar zwischen abstraktem "Daten-Tunnel" und "Globus-Ansicht"
+(Geografisches Mapping).
+
+AUDITIVE PARAMETER
+
+Frequenz: Abgeleitet von der Titellänge des Artikels. Längere Titel
+erzeugen tiefere, fundamentale Frequenzen.
+
+Klangfarbe (Timbre): Unterscheidung zwischen Bot (Digital/Square) und
+Mensch (Analog/Sawtooth).
+
+Räumlichkeit: Stereo-Panning korrespondiert mit der visuellen Position.
+
+INTERAKTIVITÄT ("MIXING DESK")
+
+Der Nutzer kann die generative Ästhetik in Echtzeit beeinflussen:
+
+Balance: Mischverhältnis zwischen Bot- und Mensch-Edits.
+
+Harmony: Interpolation zwischen freier Atonalität und quantisierter
+pentatonischer Skala.
+
+Timbre: Steuerung der Filter-Helligkeit und des visuellen "Glows".
+
+Space: Regelung des Hall-Anteils (Reverb) und der visuellen Partikel-Spuren.
+
+================================================================================
+5. INSTALLATION & VERWENDUNG
+
+VARIANTE A: ONLINE VERSION (Empfohlen für Review)
+
+Besuchen Sie einfach die Live-URL. Keine Installation notwendig.
+URL: https://maltemittrowann.com/wiki-sonic/
+(Hinweis: Klicken Sie auf "Enter Experience", um den AudioContext zu starten).
+
+VARIANTE B: LOKALE VERSION (Python & SuperCollider)
+
+Voraussetzungen:
+
+Python 3.10 oder neuer
+
+SuperCollider
+
+Python Libraries: pip install requests python-osc pygame
+
+Schritt-für-Schritt Anleitung:
+
+Starten der Audio-Engine:
+Öffnen Sie Wikipedia-Synth.scd in SuperCollider. Führen Sie den gesamten
+Code-Block aus (Strg+Enter / Cmd+Enter), um den Server zu booten und die
+SynthDefs sowie OSC-Listener zu laden.
+
+Starten der Visualisierung:
+Öffnen Sie ein Terminal und führen Sie aus:
+python Wikipedia-Visualizer.py
+(Dies öffnet das Fenster und startet den OSC-Server für die Steuerung).
+
+Starten des Daten-Streams:
+Öffnen Sie ein zweites Terminal und führen Sie aus:
+python Wikipedia-Streaming.py
+(Dies verbindet sich mit der Wikimedia API und sendet Daten an SC und Pygame).
+
+================================================================================
+6. LIZENZ
+
+Dieses Projekt ist Open Source unter der MIT Lizenz.
+Erstellt als Semesterprojekt im Kurs "Generative Sound & Visual Art".
